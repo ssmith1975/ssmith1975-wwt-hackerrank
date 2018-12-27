@@ -21,33 +21,10 @@ namespace StringEncoder
         public static string encode(string stringToEncode)
         {
             StringBuilder sb = new StringBuilder();
-            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            Dictionary<char, char> charMap = buildCharMapping();
             string regexPattern = @"\d+";
 
-            Dictionary<char, char> charMap = new Dictionary<char, char>()
-            {
-                // map vowels
-                {'a','1'},
-                {'e','2'},
-                {'i','3'},
-                {'o','4'},
-                {'u','5'},
-                // map 'y'
-                {'y',' '},
-            };
 
-            // Generate mapping for consonants by  pairing them with previous 
-            // the previous character in the alphabet
-            foreach (var ch in alphabet)
-            {
-                if (!charMap.ContainsKey(ch))
-                {
-                    char key = ch;
-                    char val = (char)(ch - 1);
-                    charMap[key] = val;
-                } // end if
-
-            } // end foreach loop
 
 
             // Convert string to lowercase 
@@ -84,7 +61,41 @@ namespace StringEncoder
 
         } // end encode
 
+        static Dictionary<char, char> buildCharMapping()
+        {
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
+            // Initialize dictionary
+            Dictionary<char, char> charMap = new Dictionary<char, char>()
+            {
+                // map vowels
+                {'a','1'},
+                {'e','2'},
+                {'i','3'},
+                {'o','4'},
+                {'u','5'},
+
+                //map 'y' and space
+                {'y',' '},
+                {' ','y'},
+
+            };
+
+            // Generate mapping for consonants by  pairing them with previous 
+            // the previous character in the alphabet
+            foreach (var ch in alphabet)
+            {
+                if (!charMap.ContainsKey(ch))
+                {
+                    char key = ch;
+                    char val = (char)(ch - 1);
+                    charMap[key] = val;
+                } // end if
+
+            } // end foreach loop
+
+            return charMap;
+        } // end buildCharMapping
 
         public static void Main(string[] args)
         {
