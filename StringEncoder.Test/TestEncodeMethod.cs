@@ -92,7 +92,7 @@ namespace StringEncoder.Test
         {
             string[] input = { "1", "123", "567-890" };
             string[] expected = { "1", "321", "765-098" };
-            string[] actual = new string[] { };
+            string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {

@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System;
+using System.Text.RegularExpressions;
 
 namespace StringEncoder
 {
@@ -21,6 +22,7 @@ namespace StringEncoder
         {
             StringBuilder sb = new StringBuilder();
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            string regexPattern = @"\d+";
 
             Dictionary<char, char> charMap = new Dictionary<char, char>()
             {
@@ -48,6 +50,15 @@ namespace StringEncoder
 
             // Convert string to lowercase 
             stringToEncode = stringToEncode.ToLower();
+
+            // Reverse order of digits for numerical values within string
+            stringToEncode = Regex.Replace(stringToEncode, regexPattern,
+                new MatchEvaluator(m => {
+                    char[] charArr = (m.Value).ToCharArray();
+                    Array.Reverse(charArr);
+                    return new string(charArr);
+                }) // end MatchEvaluator
+            ); // end stringToEncode
 
             // Add to stringbuilder
             sb.Append(stringToEncode);
