@@ -32,6 +32,8 @@ namespace StringEncoder
                 {'i','3'},
                 {'o','4'},
                 {'u','5'},
+                // map 'y'
+                {'y',' '},
             };
 
             // Generate mapping for consonants by  pairing them with previous 
