@@ -19,6 +19,10 @@ namespace StringEncoder
         // Complete the encode function below.
         public static string encode(string stringToEncode)
         {
+            // Convert string to lowercase 
+            stringToEncode = stringToEncode.ToLower();
+
+
             return stringToEncode;
 
 
