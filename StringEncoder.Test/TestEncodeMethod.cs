@@ -44,9 +44,9 @@ namespace StringEncoder.Test
         {
             string[] input = { "a", "e", "i", "o", "u" };
             string[] expected = { "1", "2", "3", "4", "5" };
-            string[] actual = new string[] { };
+            string[] actual = new string[input.Length];
 
-            for(int i = 0; i < input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 actual[i] = Solution.encode(input[i]);
             }
@@ -59,7 +59,7 @@ namespace StringEncoder.Test
         {
             string[] input = { "b", "c", "d", "x", "y" };
             string[] expected = { "a", "b", "c", "w", "x" };
-            string[] actual = new string[] { };
+            string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -107,7 +107,7 @@ namespace StringEncoder.Test
         {
             string[] input = { "!", ";", "-","[]","()" };
             string[] expected = { "!", ";", "-", "[]", "()" };
-            string[] actual = new string[] { };
+            string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {

@@ -19,11 +19,38 @@ namespace StringEncoder
         // Complete the encode function below.
         public static string encode(string stringToEncode)
         {
+            StringBuilder sb = new StringBuilder();
+            Dictionary<char, char> charMap = new Dictionary<char, char>()
+            {
+                // map vowels
+                {'a','1'},
+                {'e','2'},
+                {'i','3'},
+                {'o','4'},
+                {'u','5'},
+            }; 
+
             // Convert string to lowercase 
             stringToEncode = stringToEncode.ToLower();
 
+            // Add to stringbuilder
+            sb.Append(stringToEncode);
 
-            return stringToEncode;
+            // Map characters
+            for (int i = 0; i < sb.Length; i++)
+            {
+                // Get current character
+                char character = sb[i];
+                // Check mapping dictionary
+                if (charMap.ContainsKey(character))
+                {
+                    // Update character with encoded character mapped from dictionary
+                    sb[i] = charMap[character];
+                } // end if
+            } // end for loop
+
+
+            return sb.ToString();
 
 
         } // end encode
