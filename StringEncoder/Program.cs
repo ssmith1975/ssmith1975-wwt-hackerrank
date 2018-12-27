@@ -20,6 +20,8 @@ namespace StringEncoder
         public static string encode(string stringToEncode)
         {
             StringBuilder sb = new StringBuilder();
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
             Dictionary<char, char> charMap = new Dictionary<char, char>()
             {
                 // map vowels
@@ -28,7 +30,21 @@ namespace StringEncoder
                 {'i','3'},
                 {'o','4'},
                 {'u','5'},
-            }; 
+            };
+
+            // Generate mapping for consonants by  pairing them with previous 
+            // the previous character in the alphabet
+            foreach (var ch in alphabet)
+            {
+                if (!charMap.ContainsKey(ch))
+                {
+                    char key = ch;
+                    char val = (char)(ch - 1);
+                    charMap[key] = val;
+                } // end if
+
+            } // end foreach loop
+
 
             // Convert string to lowercase 
             stringToEncode = stringToEncode.ToLower();
