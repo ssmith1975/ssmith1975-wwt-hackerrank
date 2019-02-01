@@ -13,12 +13,12 @@ namespace StringEncoder
         /// </summary>
         /// <param name="stringToEncode">Input string to encode</param>
         /// <returns>Returns encoded string</returns>
-        public static string encode(string stringToEncode)
+        public static string encode(string stringToEncode, Dictionary<char, char> charMap)
         {
             StringBuilder sb = new StringBuilder();
 
             // Setup character mapping
-            Dictionary<char, char> charMap = buildCharMapping();
+            //Dictionary<char, char> charMap = buildCharMapping();
            
             // Convert string to lowercase 
             stringToEncode = stringToEncode.ToLower();
@@ -45,7 +45,6 @@ namespace StringEncoder
 
             return sb.ToString();
 
-
         } // end encode
 
         /// <summary> 
@@ -71,7 +70,7 @@ namespace StringEncoder
         ///     Generates character mapping
         /// </summary>
         /// <returns>Dictionary key/value pair of type char</returns>
-        static Dictionary<char, char> buildCharMapping()
+        static public Dictionary<char, char> buildCharMapping()
         {
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -109,12 +108,12 @@ namespace StringEncoder
 
         public static void Main(string[] args)
         {
-
+            Dictionary<char, char> charMap = buildCharMapping();
             //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
             Console.Write("Enter some text to encode: " );
             string stringToEncode = Console.ReadLine();
 
-            string res = encode(stringToEncode);
+            string res = encode(stringToEncode, charMap);
             Console.WriteLine("\r\nResult: " + res);
  
             Console.WriteLine("\r\n\r\nHit any key to exit program....");
