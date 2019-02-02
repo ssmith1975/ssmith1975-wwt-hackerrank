@@ -75,7 +75,7 @@ namespace StringEncoder
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
             // Initialize dictionary
-            Dictionary<char, char> charMap = new Dictionary<char, char>()
+            Dictionary<char, char> charMapx = new Dictionary<char, char>()
             {
                 // map vowels
                 {'a','1'},
