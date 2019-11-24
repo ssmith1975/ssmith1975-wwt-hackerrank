@@ -8,30 +8,36 @@ namespace StringEncoder.Test
     [TestClass]
     public class TestEncodeMethod
     {
-        Dictionary<char, char> charMapTest;
-
+       // Dictionary<char, char> charMapTest;
+        Encoder stringEncoder;
         [TestInitialize]
         public void TestInit()
         {
-            charMapTestx = Solution.buildCharMapping();
+            //charMapTest = Solution.buildCharMapping();
+            stringEncoder = Encoder.Instance;
         }
         [TestMethod]
         public void Should_Return_String()
         {
+
+            //IEncoder stringEncoder = new Encoder();
+
             string input = "Hello World!";
-            string actual = Solution.encode(input, charMapTest);
+            string actual = stringEncoder.encode(input);
             Assert.IsInstanceOfType(actual,typeof(String));
         } // end encodeReturnsAString
 
         [TestMethod]
         public void Should_Return_Lowercase()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string input1 = "ABCabc123";
             string input2 = input1.ToLower();
 
            
-            string result1 = Solution.encode(input1, charMapTest);
-            string result2 = Solution.encode(input2, charMapTest);
+            string result1 = stringEncoder.encode(input1);
+            string result2 = stringEncoder.encode(input2);
 
             bool actual1 = isAllLowerCase(result1);
             bool actual2 = isAllLowerCase(result2); 
@@ -49,13 +55,16 @@ namespace StringEncoder.Test
         [TestMethod]
         public void Should_Replace_Vowels_WithNumber()
         {
+           // IEncoder stringEncoder = new Encoder();
+
+
             string[] input = { "a", "e", "i", "o", "u" };
             string[] expected = { "1", "2", "3", "4", "5" };
             string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                actual[i] = Solution.encode(input[i], charMapTest);
+                actual[i] = stringEncoder.encode(input[i]);
             }
             
             CollectionAssert.AreEqual(expected, actual);
@@ -64,13 +73,15 @@ namespace StringEncoder.Test
         [TestMethod]
         public void Should_Replace_Consonants_With_Previous()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string[] input = { "b", "c", "d", "x","z"};
             string[] expected = { "a", "b", "c", "w","y" };
             string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                actual[i] = Solution.encode(input[i], charMapTest);
+                actual[i] = stringEncoder.encode(input[i]);
             }
 
             CollectionAssert.AreEqual(expected, actual);
@@ -79,31 +90,37 @@ namespace StringEncoder.Test
         [TestMethod]
         public void Should_Replace_Y_With_Space()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string input = "y";
             string expected = " ";
-            string actual = Solution.encode(input, charMapTest);
+            string actual = stringEncoder.encode(input);
             Assert.AreEqual(expected, actual);
         } // end Should_Replace_Y_With_Space
 
         [TestMethod]
         public void Should_Replace_Space_With_Y()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string input = " ";
             string expected = "y";
-            string actual = Solution.encode(input, charMapTest);
+            string actual = stringEncoder.encode(input);
             Assert.AreEqual(expected, actual);
         } // end Should_Replace_Space_With_Y
 
         [TestMethod]
         public void Should_Replace_Number_With_Reverse()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string[] input = { "1", "123", "567-890" };
             string[] expected = { "1", "321", "765-098" };
             string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                actual[i] = Solution.encode(input[i], charMapTest);
+                actual[i] = stringEncoder.encode(input[i]);
             }
 
             CollectionAssert.AreEqual(expected, actual);
@@ -112,13 +129,15 @@ namespace StringEncoder.Test
         [TestMethod]
         public void Other_Characters_Should_Remain_Unchanged()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string[] input = { "!", ";", "-","[]","()" };
             string[] expected = { "!", ";", "-", "[]", "()" };
             string[] actual = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                actual[i] = Solution.encode(input[i], charMapTest);
+                actual[i] = stringEncoder.encode(input[i]);
             }
 
             CollectionAssert.AreEqual(expected, actual);
@@ -127,9 +146,11 @@ namespace StringEncoder.Test
         [TestMethod]
         public void Should_Encode_Sample()
         {
+            //IEncoder stringEncoder = new Encoder();
+
             string input = "Hello World!";
             string expected = "g2kk4yv4qkc!";
-            string actual = Solution.encode(input, charMapTest);
+            string actual = stringEncoder.encode(input);
             Assert.AreEqual(expected, actual);
         } // end Should_Encode_Sample
 
